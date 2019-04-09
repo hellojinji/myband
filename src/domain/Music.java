@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Arrays;
+
 public class Music {
     private int id;
     private String lyrics;
@@ -104,5 +106,20 @@ public class Music {
 
     public void setMusic_comments(Music_comment[] music_comments) {
         this.music_comments = music_comments;
+    }
+
+    @Override
+    public String toString() {
+        return "Music{" +
+                "id=" + id +
+                ", lyrics='" + lyrics + '\'' +
+                ", project_id=" + project_id +
+                ", group_id=" + group_id +
+                ", style='" + style + '\'' +
+                ", likes=" + likes +
+                ", image_url='" + image_url + '\'' +
+                ", music_url='" + music_url + '\'' +
+                ", music_comments=" + Arrays.toString(music_comments) +
+                '}';
     }
 }
