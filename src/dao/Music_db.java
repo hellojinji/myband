@@ -3,6 +3,8 @@ import domain.Music;
 import domain.Music_comment;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Music_db {
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -154,6 +156,85 @@ public class Music_db {
             pst.setString(6,newmusic.getImage_url());
             pst.setString(7,newmusic.getMusic_url());
             pst.executeUpdate();//解释在下
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (SQLException e) {//执行与数据库建立连接需要抛出SQL异常
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+    //删除音乐数据
+    public static void deleteMusic(int id){
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            // 注册 JDBC 驱动
+            Class.forName("com.mysql.jdbc.Driver");
+
+            // 打开链接
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            String sql = "delete from music where music_id=?";
+            // 预处理sql语句
+            PreparedStatement presta = conn.prepareStatement(sql);
+            // 设置sql语句中的values值
+            presta.setInt(1,id);
+            // 执行SQL语句，实现数据添加
+            presta.execute();
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (SQLException e) {//执行与数据库建立连接需要抛出SQL异常
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+    //添加评论到数据库。
+    public static void appendComment(String content, int music_id, int user_id){
+        String sql = "insert into myband.music_comments (content,music_id,likes,date,user_id) values (?,?,?,?,?);";//数据库操作语句（插入）
+        Connection conn = null;
+        Statement stmt = null;
+        Date date = new Date();//获得系统时间.
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss ");
+        String nowTime = sdf.format(date);//将时间格式转换成符合Timestamp要求的格式.
+        Timestamp dates =Timestamp.valueOf(nowTime);//把时间转换
+        try {
+            // 注册 JDBC 驱动
+            Class.forName("com.mysql.jdbc.Driver");
+            // 打开链接
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            PreparedStatement pst = conn.prepareStatement(sql);//用来执行SQL语句查询，对sql语句进行预编译处理
+            pst.setString(1, content);
+            pst.setInt(2, music_id);
+            pst.setInt(3,0);
+            pst.setTimestamp(4,dates);
+            pst.setInt(5,user_id);
+            pst.executeUpdate();//解释在下
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (SQLException e) {//执行与数据库建立连接需要抛出SQL异常
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+    //删除评论的数据
+    public static void deleteComment(int id){
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            // 注册 JDBC 驱动
+            Class.forName("com.mysql.jdbc.Driver");
+
+            // 打开链接
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            String sql = "delete from music_comments where comment_id=?";
+            // 预处理sql语句
+            PreparedStatement presta = conn.prepareStatement(sql);
+            // 设置sql语句中的values值
+            presta.setInt(1,id);
+            // 执行SQL语句，实现数据添加
+            presta.execute();
         } catch (ClassNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
