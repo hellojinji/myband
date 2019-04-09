@@ -1,0 +1,242 @@
+<!--项目播放页面-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <title>项目播放</title>
+        <!--css-->
+        <link rel="stylesheet" href="css/basic.css" type="text/css">
+        <link rel="stylesheet" href="css/project_play.css" type="text/css">
+        <!--JavaScript-->
+        <script src="script/basic.js"></script>
+        <script src="script/project_play.js"></script>
+        <!--jquery-->
+        <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+        <!--Bootstrap-->
+        <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+	    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div id="header"></div><!--公共头部-->
+        <!--主体内容-->
+        <div class="container_body"
+        style="width:auto;background-color:gray;">
+            <div class="row"><!--两栏式，两边再留白，一共4个部分-->
+                <!--左栏主体栏，偏移1留白，宽度7-->
+                <div class="col-md-7 col-lg-7 col-sm-7 col-sm-offset-1 col-md-offset-1 col-lg-offset-1"
+                style="background-color:white;
+                border-left: 3px solid dimgrey;
+                border-right: 3px solid dimgray;
+                padding-top: 10px">
+                    <!--播放器-->
+                    <div class="row"
+                    style="padding-bottom: 20px">
+                        <div class="col-md-5 col-lg-5 sol-sm-5"
+                        style="text-align: center;
+                        padding-top: 20px;
+                        padding-bottom: 20px;">
+                            <img class="img-circle img-thumbnail" style="display: inline-block" src="http://p2.music.126.net/ipesYLUqC0I5CG1BEDRJLw==/2447512883490682.jpg?param=130y130" data-src="http://p2.music.126.net/ipesYLUqC0I5CG1BEDRJLw==/2447512883490682.jpg">
+                            <h5><span class="glyphicon glyphicon-music"></span> 生成外链播放器</h5>
+                        </div>
+                        <div class="col-md-7 col-lg-7 col-sm-7"
+                        style="padding-right: 30px;
+                        padding-left: 5px">
+                            <h1>Nothing To Fear</h1>
+                            <h4>歌手:Dexter Britain</h4>
+                            <h4>所属专辑：Nothing To Fear</h4>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-play"></span> 播放
+                                </button>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-folder-open"></span> 收藏
+                                </button>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-share"></span> 分享
+                                </button>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-download"></span> 下载
+                                </button>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-comment"></span> 评论
+                                </button>
+                            </div>
+                            <div style="padding-top: 50px;padding-bottom: 50px;color: gray">
+                                <h5>纯音乐，无歌词</h5>
+                            </div>
+                            <div style="float: right;color:gray">
+                                <h6>歌曲报错</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <!--评论区-->
+                    <!--标题，输入区-->
+                    <div class="row">
+                        <div class="col-sm-10 col-md-10 col-lg-10 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+                            <div style="border-bottom: 3px solid darkred">
+                                <h2>评论 <small>共28167条评论</small></h2>
+                            </div>
+                            <div style="padding: 10px">
+                                <div class="input-group input-group-lg">
+                                    <img class="img-responsive" style="width: 100px;height: 100px;float: left;" src="http://s4.music.126.net/style/web2/img/default/default_avatar.jpg?param=50y50">
+                                    <input type="text" class="form-control" placeholder="想说点什么" style="width: auto;">
+                                </div>
+                                <div class="btn-group" style="float:right">
+                                    <button type="button" class="btn btn-primary">评论</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--显示其他人的评论-->
+                    <div class="row">
+                        <div class="col-sm-10 col-md-10 col-lg-10 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-12">   
+                                    <h4 style="border-bottom:2px solid gray;padding-bottom: 8px">精彩评论</h4>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 10px;padding-bottom: 10px">
+                                <div class="col-sm-2 col-md-2 col-lg-2" style="padding: 10px;text-align: center">
+                                    <img style="display: inline-block" src="https://p1.music.126.net/sFF7VEuZ2G45NruCaso7jw==/109951162903099407.jpg?param=50y50">
+                                </div>
+                                <div class="col-sm-10 col-md-10 col-lg-10" style="padding: 10px">
+                                    <a>gitace :</a>
+                                    <p style="word-wrap: break-word;text-align: justify">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+                                    <h6 style="float:right">回复</h6>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 10px;padding-bottom: 10px">
+                                <div class="col-sm-2 col-md-2 col-lg-2" style="padding: 10px;text-align: center">
+                                    <img style="display: inline-block" src="https://p1.music.126.net/IXqR0vlMTnyXmb6VfKpH0Q==/3427177755617097.jpg?param=50y50">
+                                </div>
+                                <div class="col-sm-10 col-md-10 col-lg-10" style="padding: 10px">
+                                    <a>转角遇到小惊喜 :</a>
+                                    <p style="word-wrap: break-word; text-align: justify">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+                                    <h6 style="float:right">回复</h6>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 10px;padding-bottom: 10px">
+                                <div class="col-sm-2 col-md-2 col-lg-2" style="padding: 10px;text-align: center">
+                                    <img style="display: inline-block" src="https://p1.music.126.net/nlLIiLrSBsUZZ36FdPxhYw==/3252355415184705.jpg?param=50y50">
+                                </div>
+                                <div class="col-sm-10 col-md-10 col-lg-10" style="padding: 10px">
+                                    <a>低眉出尘 :</a>
+                                    <p style="word-wrap: break-word; text-align: justify">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+                                    <h6 style="float:right">回复</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--右栏辅栏，宽度3-->
+                <div class="col-md-3 col-lg-3 col-sm-3"
+                style="background-color:white;
+                border-right: 3px solid dimgray;
+                padding-top: 8px">
+                    <!--参与创作的用户-->
+                    <div class="row">
+                        <div class="col-sm-10 col-md-10 col-lg-10 col-sm-offset-1 col-md-offset-1 col-lg-offset-1"
+                        style="padding-top: 10px;padding-bottom: 10px">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                    <h5 style="border-bottom:2px solid gray;padding-bottom: 8px">参与创作这首歌曲的用户</h5>
+                                </div>    
+                            </div>
+                            <div class="row" style="padding-top: 8px;padding-bottom: 8px">
+                                <div class="col-sm-3 col-md-3 col-lg-3" style="text-align: center">
+                                    <img style="display: inline-block" src="http://p2.music.126.net/vOhtIZKvWsEf_D5qUwm5iA==/3387595325903159.jpg?param=50y50">
+                                </div>
+                                <div class="col-sm-9 col-md-9 col-lg-9" style="text-align: left">
+                                    <h5>皇太极Starlord</h5>
+                                    <h6>Lv.10</h6>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 8px;padding-bottom: 8px">
+                                <div class="col-sm-3 col-md-3 col-lg-3" style="text-align: center">
+                                    <img style="display: inline-block" src="http://p2.music.126.net/wL0YPSNUil_9XXJvoRsOiA==/7831821325847740.jpg?param=50y50">
+                                </div>
+                                <div class="col-sm-9 col-md-9 col-lg-9" style="text-align: left">
+                                    <h5> 阿勃勃</h5>
+                                    <h6>Lv.8</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--相似项目-->
+                    <div class="row">
+                        <div class="col-sm-10 col-md-10 col-lg-10 col-sm-offset-1 col-md-offset-1 col-lg-offset-1"
+                        style="padding-top: 10px;padding-bottom: 10px">
+                            <div class="row" style="padding-bottom: 10px">
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                    <h4 style="border-bottom:2px solid gray;padding-bottom: 8px">相似项目</h4>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 3px;padding-bottom: 3px">
+                                <div class="col-sm-8 col-md-8 col-lg-8" style="text-align: left">
+                                    <h4 style="padding-left: 5px">Rapture</h4>
+                                    <h5 style="padding-left: 5px">John Stanford</h5>
+                                </div>
+                                <div class="col-sm-4 col-md-4 col-lg-4" style="text-align: right">
+                                    <h4>
+                                        <span class="glyphicon glyphicon-play"></span>
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 3px;padding-bottom: 3px">
+                                <div class="col-sm-8 col-md-8 col-lg-8" style="text-align: left">
+                                    <h4 style="padding-left: 5px">Rapture</h4>
+                                    <h5 style="padding-left: 5px">John Stanford</h5>
+                                </div>
+                                <div class="col-sm-4 col-md-4 col-lg-4" style="text-align: right">
+                                    <h4>
+                                        <span class="glyphicon glyphicon-play"></span>
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 3px;padding-bottom: 3px">
+                                <div class="col-sm-8 col-md-8 col-lg-8" style="text-align: left">
+                                    <h4 style="padding-left: 5px">Rapture</h4>
+                                    <h5 style="padding-left: 5px">John Stanford</h5>
+                                </div>
+                                <div class="col-sm-4 col-md-4 col-lg-4" style="text-align: right">
+                                    <h4>
+                                        <span class="glyphicon glyphicon-play"></span>
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-10 col-md-10 col-lg-10 col-sm-offset-1 col-md-offset-1 col-lg-offset-1"
+                        style="padding-top: 10px;padding-bottom: 10px">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer"></div><!--页脚-->
+    </body>
+</html>
