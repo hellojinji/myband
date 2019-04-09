@@ -10,6 +10,7 @@ public class Music_db {
     // 数据库的用户名与密码，需要根据自己的设置
     static final String USER = "root";
     static final String PASS = "zhw787374484";
+    //选出点赞量最高的三个音乐。
     public static Music[] getHotmusic(){
         Music[] music_group=new Music[3];
         music_group[0]=new Music(12,"dhe",21,212,"edw",21,"dwdq","dqd");
@@ -67,6 +68,7 @@ public class Music_db {
         }
         return music_group;
     }
+    //初始化音乐页面时所需函数，传递一个Music的对象。
     public static Music init_music(int id){
         Music music=new Music(12,"dhe",21,212,"edw",21,"dwdq","dqd");
         Connection conn = null;
