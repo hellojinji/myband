@@ -64,4 +64,16 @@ public class Music_comment {
     public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
+
+    @Override
+    public String toString() {
+        return "Music_comment{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", music_id=" + music_id +
+                ", likes=" + likes +
+                ", date='" + date + '\'' +
+                ", user_id=" + user_id +
+                '}';
+    }
 }
