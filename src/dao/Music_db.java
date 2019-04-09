@@ -69,7 +69,7 @@ public class Music_db {
         return music_group;
     }
     //初始化音乐页面时所需函数，传递一个Music的对象。
-    public static Music init_music(int id){
+    public static Music initMusic(int id){
         Music music=new Music(12,"dhe",21,212,"edw",21,"dwdq","dqd");
         Connection conn = null;
         Statement stmt = null;
@@ -132,5 +132,34 @@ public class Music_db {
             }
         }
         return music;
+    }
+    //插入music到Music数据库表。
+    public static void appendMusic(int id, String lyrics, int project_id, int group_id, String style, int likes, String image_url, String music_url){
+        Music newmusic=new Music(id, lyrics, project_id, group_id, style, likes, image_url, music_url);
+        String sql = "insert into music values(?,?,?,?,?,?,?,?)";//数据库操作语句（插入）
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            // 注册 JDBC 驱动
+            Class.forName("com.mysql.jdbc.Driver");
+
+            // 打开链接
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            PreparedStatement pst = conn.prepareStatement(sql);//用来执行SQL语句查询，对sql语句进行预编译处理
+            pst.setInt(1, newmusic.getId());
+            pst.setString(2, newmusic.getLyrics());
+            pst.setInt(3,newmusic.getProject_id());
+            pst.setInt(4,newmusic.getGroup_id());
+            pst.setString(5,newmusic.getStyle());
+            pst.setString(6,newmusic.getImage_url());
+            pst.setString(7,newmusic.getMusic_url());
+            pst.executeUpdate();//解释在下
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (SQLException e) {//执行与数据库建立连接需要抛出SQL异常
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }
