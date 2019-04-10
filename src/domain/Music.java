@@ -3,15 +3,15 @@ package domain;
 import java.util.Arrays;
 
 public class Music {
-    private int id;
-    private String lyrics;
-    private int project_id;
-    private int group_id;
-    private String style;
-    private int likes;
-    private String image_url;
-    private String music_url;
-    private Music_comment[] music_comments;
+    private int id;//ID
+    private String lyrics;//歌词
+    private int project_id;//所属项目的ID
+    private int group_id;//所属小组的ID
+    private String style;//风格
+    private int likes;//点赞数
+    private String image_url;//封面
+    private String music_url;//音乐文件
+    //private Music_comment[] music_comments;//评论应该单独出来
 
     public Music(int id, String lyrics, int project_id, int group_id, String style, int likes, String image_url, String music_url) {
         this.id = id;
@@ -33,7 +33,7 @@ public class Music {
         this.likes = likes;
         this.image_url = image_url;
         this.music_url = music_url;
-        this.music_comments = music_comments;
+        //this.music_comments = music_comments;
     }
 
     public int getId() {
@@ -100,6 +100,7 @@ public class Music {
         this.music_url = music_url;
     }
 
+    /*
     public Music_comment[] getMusic_comments() {
         return music_comments;
     }
@@ -107,6 +108,7 @@ public class Music {
     public void setMusic_comments(Music_comment[] music_comments) {
         this.music_comments = music_comments;
     }
+    */
 
     @Override
     public String toString() {
@@ -123,3 +125,4 @@ public class Music {
                 '}';
     }
 }
+
