@@ -71,8 +71,8 @@ Music数组
 ## 获取小组作品
 
 ### 定义
-public static Work getGroupWork(int group_id)
+public static Project getGroupProject(int group_id)
 ### 参数
 int group_id 小组ID
 ### 返回值
-Work对象
+Project对象
