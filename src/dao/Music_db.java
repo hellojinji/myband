@@ -8,11 +8,11 @@ import java.util.Date;
 
 public class Music_db {
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost:3306/myband";
-    // Êı¾İ¿âµÄÓÃ»§ÃûÓëÃÜÂë£¬ĞèÒª¸ù¾İ×Ô¼ºµÄÉèÖÃ
+    static final String DB_URL = "jdbc:mysql://39.105.136.116:3306/MYBAND";
+    // æ•°æ®åº“çš„ç”¨æˆ·åä¸å¯†ç ï¼Œéœ€è¦æ ¹æ®è‡ªå·±çš„è®¾ç½®
     static final String USER = "root";
-    static final String PASS = "zhw787374484";
-    //Ñ¡³öµãÔŞÁ¿×î¸ßµÄÈı¸öÒôÀÖ¡£
+    static final String PASS = "2017211501";
+    //é€‰å‡ºç‚¹èµé‡æœ€é«˜çš„ä¸‰ä¸ªéŸ³ä¹ã€‚
     public static Music[] getHotmusic(){
         Music[] music_group=new Music[3];
         music_group[0]=new Music(12,"dhe",21,212,"edw",21,"dwdq","dqd");
@@ -21,21 +21,21 @@ public class Music_db {
         Connection conn = null;
         Statement stmt = null;
         try {
-            // ×¢²á JDBC Çı¶¯
+            // æ³¨å†Œ JDBC é©±åŠ¨
             Class.forName("com.mysql.jdbc.Driver");
 
-            // ´ò¿ªÁ´½Ó
+            // æ‰“å¼€é“¾æ¥
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
-            // Ö´ĞĞ²éÑ¯
+            // æ‰§è¡ŒæŸ¥è¯¢
             stmt = conn.createStatement();
             String sql;
             sql = "select * from myband.music order by likes desc";
             ResultSet rs = stmt.executeQuery(sql);
             int n=0;
-            // Õ¹¿ª½á¹û¼¯Êı¾İ¿â
+            // å±•å¼€ç»“æœé›†æ•°æ®åº“
             while (rs.next()) {
-                // Í¨¹ı×Ö¶Î¼ìË÷
+                // é€šè¿‡å­—æ®µæ£€ç´¢
                 music_group[n].setId(rs.getInt("music_id"));
                 music_group[n].setLyrics(rs.getString("lyrics"));
                 music_group[n].setProject_id(rs.getInt("project_id"));
@@ -46,22 +46,22 @@ public class Music_db {
                 music_group[n].setMusic_url(rs.getString("music_url"));
                 n++;
             }
-            // Íê³Éºó¹Ø±Õ
+            // å®Œæˆåå…³é—­
             rs.close();
             stmt.close();
             conn.close();
         } catch (SQLException se) {
-            // ´¦Àí JDBC ´íÎó
+            // å¤„ç† JDBC é”™è¯¯
             se.printStackTrace();
         } catch (Exception e) {
-            // ´¦Àí Class.forName ´íÎó
+            // å¤„ç† Class.forName é”™è¯¯
             e.printStackTrace();
         } finally {
-            // ¹Ø±Õ×ÊÔ´
+            // å…³é—­èµ„æº
             try {
                 if (stmt != null) stmt.close();
             } catch (SQLException se2) {
-            }// Ê²Ã´¶¼²»×ö
+            }// ä»€ä¹ˆéƒ½ä¸åš
             try {
                 if (conn != null) conn.close();
             } catch (SQLException se) {
@@ -70,19 +70,19 @@ public class Music_db {
         }
         return music_group;
     }
-    //³õÊ¼»¯ÒôÀÖÒ³ÃæÊ±ËùĞèº¯Êı£¬´«µİÒ»¸öMusicµÄ¶ÔÏó¡£
+    //åˆå§‹åŒ–éŸ³ä¹é¡µé¢æ—¶æ‰€éœ€å‡½æ•°ï¼Œä¼ é€’ä¸€ä¸ªMusicçš„å¯¹è±¡ã€‚
     public static Music initMusic(int id){
         Music music=new Music(12,"dhe",21,212,"edw",21,"dwdq","dqd");
         Connection conn = null;
         Statement stmt = null;
         try {
-            // ×¢²á JDBC Çı¶¯
+            // æ³¨å†Œ JDBC é©±åŠ¨
             Class.forName("com.mysql.jdbc.Driver");
 
-            // ´ò¿ªÁ´½Ó
+            // æ‰“å¼€é“¾æ¥
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
-            // Ö´ĞĞ²éÑ¯
+            // æ‰§è¡ŒæŸ¥è¯¢
             stmt = conn.createStatement();
             String sql;
             sql = "SELECT * FROM myband.music where music_id='"+id+"'";
@@ -98,10 +98,10 @@ public class Music_db {
             sql = "SELECT * FROM myband.music_comments where myband.music_comments.music_id='"+id+"' order by likes desc";
             rs = stmt.executeQuery(sql);
             int n=0;
-            // Õ¹¿ª½á¹û¼¯Êı¾İ¿â
+            // å±•å¼€ç»“æœé›†æ•°æ®åº“
             Music_comment[] music_comment_group=new Music_comment[3];
             while (rs.next()&&n<3) {
-                // Í¨¹ı×Ö¶Î¼ìË÷
+                // é€šè¿‡å­—æ®µæ£€ç´¢
                 music_comment_group[n].setId(rs.getInt("id"));
                 music_comment_group[n].setContent(rs.getString("content"));
                 music_comment_group[n].setMusic_id(rs.getInt("music_id"));
@@ -111,22 +111,22 @@ public class Music_db {
                 n++;
             }
             music.setMusic_comments(music_comment_group);
-            // Íê³Éºó¹Ø±Õ
+            // å®Œæˆåå…³é—­
             rs.close();
             stmt.close();
             conn.close();
         } catch (SQLException se) {
-            // ´¦Àí JDBC ´íÎó
+            // å¤„ç† JDBC é”™è¯¯
             se.printStackTrace();
         } catch (Exception e) {
-            // ´¦Àí Class.forName ´íÎó
+            // å¤„ç† Class.forName é”™è¯¯
             e.printStackTrace();
         } finally {
-            // ¹Ø±Õ×ÊÔ´
+            // å…³é—­èµ„æº
             try {
                 if (stmt != null) stmt.close();
             } catch (SQLException se2) {
-            }// Ê²Ã´¶¼²»×ö
+            }// ä»€ä¹ˆéƒ½ä¸åš
             try {
                 if (conn != null) conn.close();
             } catch (SQLException se) {
@@ -135,19 +135,19 @@ public class Music_db {
         }
         return music;
     }
-    //²åÈëmusicµ½MusicÊı¾İ¿â±í¡£
+    //æ’å…¥musicåˆ°Musicæ•°æ®åº“è¡¨ã€‚
     public static void appendMusic(int id, String lyrics, int project_id, int group_id, String style, int likes, String image_url, String music_url){
         Music newmusic=new Music(id, lyrics, project_id, group_id, style, likes, image_url, music_url);
-        String sql = "insert into music values(?,?,?,?,?,?,?,?)";//Êı¾İ¿â²Ù×÷Óï¾ä£¨²åÈë£©
+        String sql = "insert into music values(?,?,?,?,?,?,?,?)";//æ•°æ®åº“æ“ä½œè¯­å¥ï¼ˆæ’å…¥ï¼‰
         Connection conn = null;
         Statement stmt = null;
         try {
-            // ×¢²á JDBC Çı¶¯
+            // æ³¨å†Œ JDBC é©±åŠ¨
             Class.forName("com.mysql.jdbc.Driver");
 
-            // ´ò¿ªÁ´½Ó
+            // æ‰“å¼€é“¾æ¥
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            PreparedStatement pst = conn.prepareStatement(sql);//ÓÃÀ´Ö´ĞĞSQLÓï¾ä²éÑ¯£¬¶ÔsqlÓï¾ä½øĞĞÔ¤±àÒë´¦Àí
+            PreparedStatement pst = conn.prepareStatement(sql);//ç”¨æ¥æ‰§è¡ŒSQLè¯­å¥æŸ¥è¯¢ï¼Œå¯¹sqlè¯­å¥è¿›è¡Œé¢„ç¼–è¯‘å¤„ç†
             pst.setInt(1, newmusic.getId());
             pst.setString(2, newmusic.getLyrics());
             pst.setInt(3,newmusic.getProject_id());
@@ -155,90 +155,90 @@ public class Music_db {
             pst.setString(5,newmusic.getStyle());
             pst.setString(6,newmusic.getImage_url());
             pst.setString(7,newmusic.getMusic_url());
-            pst.executeUpdate();//½âÊÍÔÚÏÂ
+            pst.executeUpdate();//è§£é‡Šåœ¨ä¸‹
         } catch (ClassNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } catch (SQLException e) {//Ö´ĞĞÓëÊı¾İ¿â½¨Á¢Á¬½ÓĞèÒªÅ×³öSQLÒì³£
+        } catch (SQLException e) {//æ‰§è¡Œä¸æ•°æ®åº“å»ºç«‹è¿æ¥éœ€è¦æŠ›å‡ºSQLå¼‚å¸¸
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
-    //É¾³ıÒôÀÖÊı¾İ
+    //åˆ é™¤éŸ³ä¹æ•°æ®
     public static void deleteMusic(int id){
         Connection conn = null;
         Statement stmt = null;
         try {
-            // ×¢²á JDBC Çı¶¯
+            // æ³¨å†Œ JDBC é©±åŠ¨
             Class.forName("com.mysql.jdbc.Driver");
 
-            // ´ò¿ªÁ´½Ó
+            // æ‰“å¼€é“¾æ¥
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
             String sql = "delete from music where music_id=?";
-            // Ô¤´¦ÀísqlÓï¾ä
+            // é¢„å¤„ç†sqlè¯­å¥
             PreparedStatement presta = conn.prepareStatement(sql);
-            // ÉèÖÃsqlÓï¾äÖĞµÄvaluesÖµ
+            // è®¾ç½®sqlè¯­å¥ä¸­çš„valueså€¼
             presta.setInt(1,id);
-            // Ö´ĞĞSQLÓï¾ä£¬ÊµÏÖÊı¾İÌí¼Ó
+            // æ‰§è¡ŒSQLè¯­å¥ï¼Œå®ç°æ•°æ®æ·»åŠ 
             presta.execute();
         } catch (ClassNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } catch (SQLException e) {//Ö´ĞĞÓëÊı¾İ¿â½¨Á¢Á¬½ÓĞèÒªÅ×³öSQLÒì³£
+        } catch (SQLException e) {//æ‰§è¡Œä¸æ•°æ®åº“å»ºç«‹è¿æ¥éœ€è¦æŠ›å‡ºSQLå¼‚å¸¸
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
-    //Ìí¼ÓÆÀÂÛµ½Êı¾İ¿â¡£
+    //æ·»åŠ è¯„è®ºåˆ°æ•°æ®åº“ã€‚
     public static void appendComment(String content, int music_id, int user_id){
-        String sql = "insert into myband.music_comments (content,music_id,likes,date,user_id) values (?,?,?,?,?);";//Êı¾İ¿â²Ù×÷Óï¾ä£¨²åÈë£©
+        String sql = "insert into myband.music_comments (content,music_id,likes,date,user_id) values (?,?,?,?,?);";//æ•°æ®åº“æ“ä½œè¯­å¥ï¼ˆæ’å…¥ï¼‰
         Connection conn = null;
         Statement stmt = null;
-        Date date = new Date();//»ñµÃÏµÍ³Ê±¼ä.
+        Date date = new Date();//è·å¾—ç³»ç»Ÿæ—¶é—´.
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss ");
-        String nowTime = sdf.format(date);//½«Ê±¼ä¸ñÊ½×ª»»³É·ûºÏTimestampÒªÇóµÄ¸ñÊ½.
-        Timestamp dates =Timestamp.valueOf(nowTime);//°ÑÊ±¼ä×ª»»
+        String nowTime = sdf.format(date);//å°†æ—¶é—´æ ¼å¼è½¬æ¢æˆç¬¦åˆTimestampè¦æ±‚çš„æ ¼å¼.
+        Timestamp dates =Timestamp.valueOf(nowTime);//æŠŠæ—¶é—´è½¬æ¢
         try {
-            // ×¢²á JDBC Çı¶¯
+            // æ³¨å†Œ JDBC é©±åŠ¨
             Class.forName("com.mysql.jdbc.Driver");
-            // ´ò¿ªÁ´½Ó
+            // æ‰“å¼€é“¾æ¥
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            PreparedStatement pst = conn.prepareStatement(sql);//ÓÃÀ´Ö´ĞĞSQLÓï¾ä²éÑ¯£¬¶ÔsqlÓï¾ä½øĞĞÔ¤±àÒë´¦Àí
+            PreparedStatement pst = conn.prepareStatement(sql);//ç”¨æ¥æ‰§è¡ŒSQLè¯­å¥æŸ¥è¯¢ï¼Œå¯¹sqlè¯­å¥è¿›è¡Œé¢„ç¼–è¯‘å¤„ç†
             pst.setString(1, content);
             pst.setInt(2, music_id);
             pst.setInt(3,0);
             pst.setTimestamp(4,dates);
             pst.setInt(5,user_id);
-            pst.executeUpdate();//½âÊÍÔÚÏÂ
+            pst.executeUpdate();//è§£é‡Šåœ¨ä¸‹
         } catch (ClassNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } catch (SQLException e) {//Ö´ĞĞÓëÊı¾İ¿â½¨Á¢Á¬½ÓĞèÒªÅ×³öSQLÒì³£
+        } catch (SQLException e) {//æ‰§è¡Œä¸æ•°æ®åº“å»ºç«‹è¿æ¥éœ€è¦æŠ›å‡ºSQLå¼‚å¸¸
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
-    //É¾³ıÆÀÂÛµÄÊı¾İ
+    //åˆ é™¤è¯„è®ºçš„æ•°æ®
     public static void deleteComment(int id){
         Connection conn = null;
         Statement stmt = null;
         try {
-            // ×¢²á JDBC Çı¶¯
+            // æ³¨å†Œ JDBC é©±åŠ¨
             Class.forName("com.mysql.jdbc.Driver");
 
-            // ´ò¿ªÁ´½Ó
+            // æ‰“å¼€é“¾æ¥
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
             String sql = "delete from music_comments where comment_id=?";
-            // Ô¤´¦ÀísqlÓï¾ä
+            // é¢„å¤„ç†sqlè¯­å¥
             PreparedStatement presta = conn.prepareStatement(sql);
-            // ÉèÖÃsqlÓï¾äÖĞµÄvaluesÖµ
+            // è®¾ç½®sqlè¯­å¥ä¸­çš„valueså€¼
             presta.setInt(1,id);
-            // Ö´ĞĞSQLÓï¾ä£¬ÊµÏÖÊı¾İÌí¼Ó
+            // æ‰§è¡ŒSQLè¯­å¥ï¼Œå®ç°æ•°æ®æ·»åŠ 
             presta.execute();
         } catch (ClassNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } catch (SQLException e) {//Ö´ĞĞÓëÊı¾İ¿â½¨Á¢Á¬½ÓĞèÒªÅ×³öSQLÒì³£
+        } catch (SQLException e) {//æ‰§è¡Œä¸æ•°æ®åº“å»ºç«‹è¿æ¥éœ€è¦æŠ›å‡ºSQLå¼‚å¸¸
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
