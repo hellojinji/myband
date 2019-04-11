@@ -243,4 +243,90 @@ public class Music_db {
             e.printStackTrace();
         }
     }
+    //返回num个风格与id为music_id相似的音乐的信息的结构体。
+    public static Music[] getlikes(int music_id,int num){
+        Connection conn = null;
+        Statement stmt = null;
+        Music[] similar_musics=new Music[num];
+        try {
+            // 注册 JDBC 驱动
+            Class.forName("com.mysql.jdbc.Driver");
+
+            // 打开链接
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            stmt = conn.createStatement();
+            String sql = "select * from MYBAND.music where style=(SELECT style FROM MYBAND.music where music_id='"+music_id+"') and music_id!='1' order by likes desc";
+            // 预处理sql语句
+            ResultSet rs = stmt.executeQuery(sql);
+            int n=0;
+            // 展开结果集数据库
+            while (rs.next()&&n<num) {
+                // 通过字段检索
+                similar_musics[n].setId(rs.getInt("music_id"));
+                similar_musics[n].setLyrics(rs.getString("lyrics"));
+                similar_musics[n].setProject_id(rs.getInt("project_id"));
+                similar_musics[n].setGroup_id(rs.getInt("group_id"));
+                similar_musics[n].setStyle(rs.getString("style"));
+                similar_musics[n].setLikes(rs.getInt("likes"));
+                similar_musics[n].setImage_url(rs.getString("image_url"));
+                similar_musics[n].setMusic_url(rs.getString("music_url"));
+                n++;
+            }
+            // 完成后关闭
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (SQLException e) {//执行与数据库建立连接需要抛出SQL异常
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return similar_musics;
+    }
+    //返回相应的ID的music的信息。
+    public static Music getMusicFromDB(int music_id){
+        Music target_music=null;
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            // 注册 JDBC 驱动
+            Class.forName("com.mysql.jdbc.Driver");
+
+            // 打开链接
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            stmt = conn.createStatement();
+            String sql = "select * from MYBAND.music where music_id='"+music_id+"'";
+            ResultSet rs = stmt.executeQuery(sql);
+            int n=0;
+            // 展开结果集数据库
+            while (rs.next()&&n<1) {
+                // 通过字段检索
+                target_music.setId(rs.getInt("music_id"));
+                target_music.setLyrics(rs.getString("lyrics"));
+                target_music.setProject_id(rs.getInt("project_id"));
+                target_music.setGroup_id(rs.getInt("group_id"));
+                target_music.setStyle(rs.getString("style"));
+                target_music.setLikes(rs.getInt("likes"));
+                target_music.setImage_url(rs.getString("image_url"));
+                target_music.setMusic_url(rs.getString("music_url"));
+                n++;
+            }
+            // 完成后关闭
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (SQLException e) {//执行与数据库建立连接需要抛出SQL异常
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return target_music;
+    }
+    public static void main(String[] args){
+        System.out.println(getMusicFromDB(1).toString());
+    }
 }
