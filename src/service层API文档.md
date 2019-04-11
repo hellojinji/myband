@@ -68,3 +68,11 @@ Music数组
 ### 补充
 根据音乐的风格找相似音乐
 
+## 获取小组作品
+
+### 定义
+public static Work getGroupWork(int group_id)
+### 参数
+int group_id 小组ID
+### 返回值
+Work对象
