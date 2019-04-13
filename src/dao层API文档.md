@@ -56,3 +56,13 @@ public static Music[] getLikes(int music_id,int num);
 int music_id 音乐的id,int num 相似音乐的数目
 返回值
 一个Music类型对象的数组，里面是几首相似的音乐
+
+
+5.获取group的project
+定义
+public static Project[] getGroupProjectFromDB(int group_id)
+根据group_id查询小组的project
+参数
+int group_id
+返回值
+一个Project类型的数组，里面是小组的项目
