@@ -17,6 +17,10 @@ public class Music_comment {
         this.user_id = user_id;
     }
 
+    public Music_comment(){
+        this(0,"content",0,0,"0000-00-00 00:00:00",0);
+    }
+
     public int getId() {
         return id;
     }

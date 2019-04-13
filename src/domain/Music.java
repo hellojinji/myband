@@ -11,7 +11,6 @@ public class Music {
     private int likes;
     private String image_url;
     private String music_url;
-    private Music_comment[] music_comments;
 
     public Music(int id, String lyrics, int project_id, int group_id, String style, int likes, String image_url, String music_url) {
         this.id = id;
@@ -24,16 +23,8 @@ public class Music {
         this.music_url = music_url;
     }
 
-    public Music(int id, String lyrics, int project_id, int group_id, String style, int likes, String image_url, String music_url, Music_comment[] music_comments) {
-        this.id = id;
-        this.lyrics = lyrics;
-        this.project_id = project_id;
-        this.group_id = group_id;
-        this.style = style;
-        this.likes = likes;
-        this.image_url = image_url;
-        this.music_url = music_url;
-        this.music_comments = music_comments;
+    public Music(){
+        this(0,"lyrics",0,0,"style",0,"image_url","music_url");
     }
 
     public int getId() {
@@ -100,13 +91,6 @@ public class Music {
         this.music_url = music_url;
     }
 
-    public Music_comment[] getMusic_comments() {
-        return music_comments;
-    }
-
-    public void setMusic_comments(Music_comment[] music_comments) {
-        this.music_comments = music_comments;
-    }
 
     @Override
     public String toString() {
@@ -118,8 +102,7 @@ public class Music {
                 ", style='" + style + '\'' +
                 ", likes=" + likes +
                 ", image_url='" + image_url + '\'' +
-                ", music_url='" + music_url + '\'' +
-                ", music_comments=" + Arrays.toString(music_comments) +
+                ", music_url='" + music_url  +
                 '}';
     }
 }
