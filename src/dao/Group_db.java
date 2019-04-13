@@ -1,6 +1,7 @@
 package dao;
 
 import domain.Group;
+import domain.Project;
 import domain.User;
 
 import java.sql.*;
@@ -112,6 +113,96 @@ public class Group_db {
             e.printStackTrace();
         }
         return group_members_id;
+    }
+    //获取小组项目数
+    public static int getGroup_projects_number(int group_id){
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs=null;
+        int num=0;
+        try {
+            // 注册 JDBC 驱动
+            Class.forName("com.mysql.jdbc.Driver");
+            // 打开链接
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            stmt = conn.createStatement();
+            String sql = "select count(*) from MYBAND.project where group_id='"+group_id+"'";
+            rs = stmt.executeQuery(sql);
+            // 完成后关闭
+            while (rs.next()){
+                num=rs.getInt(1);
+            }
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (SQLException e) {//执行与数据库建立连接需要抛出SQL异常
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return num;
+    }
+    //返回小组的项目
+    public static Project[] getGroup_projects(int group_id){
+        Connection conn = null;
+        Statement stmt = null;
+        int n=getGroup_projects_number(group_id);
+        Project[] projects=new Project[n];
+        for(int i=0;i<n;i++){
+            projects[i]=new Project();
+        }
+        try {
+            // 注册 JDBC 驱动
+            Class.forName("com.mysql.jdbc.Driver");
+
+            // 打开链接
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+            // 执行查询
+            stmt = conn.createStatement();
+            String sql;
+            ResultSet rs;
+            sql = "SELECT * FROM myband.project where group_id='"+group_id+"' order by date ";
+            rs = stmt.executeQuery(sql);
+            int i=0;
+            while (rs.next()&&i<n) {
+                // 通过字段检索
+                projects[n].setProject_id(rs.getInt("project_id"));
+                projects[n].setGroup_id(rs.getInt("group_id"));
+                projects[n].setName(rs.getString("name"));
+                projects[n].setStyle(rs.getString("style"));
+                projects[n].setIntroduction(rs.getString("introduction"));
+                projects[n].setImage_url(rs.getString("image_url"));
+                projects[n].setMusic_url(rs.getString("music_url"));
+                projects[n].setOpern_url(rs.getString("opern"));
+                projects[n].setStatus(rs.getInt("status"));
+                i++;
+            }
+            // 完成后关闭
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException se) {
+            // 处理 JDBC 错误
+            se.printStackTrace();
+        } catch (Exception e) {
+            // 处理 Class.forName 错误
+            e.printStackTrace();
+        } finally {
+            // 关闭资源
+            try {
+                if (stmt != null) stmt.close();
+            } catch (SQLException se2) {
+            }// 什么都不做
+            try {
+                if (conn != null) conn.close();
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }
+        }
+        return projects;
     }
     //没用（复制代码使用）
     public static ResultSet getResult(String sql){
