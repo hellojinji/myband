@@ -19,6 +19,11 @@ public class GetUserServlet extends HttpServlet {
 	
 	private User user;
 	
+	public void init() throws ServletException
+	{
+		
+	}
+	
 	public void doGet(HttpServletRequest request,
             HttpServletResponse response)
     throws ServletException, IOException
@@ -45,7 +50,7 @@ public class GetUserServlet extends HttpServlet {
 						+"<signature>"+user.getSignature()+"</signatrue>"
 						+"<imageurl>"+user.getImageUrl()+"</imageurl>"
 						+"<introduction>"+user.getIntroduction()+"</introduction>"
-						+"</music>");
+						+"</user>");
 		//发送
 		outputStream.write(buff.toString().getBytes("utf-8"));
 		outputStream.flush();
