@@ -2,7 +2,6 @@ package dao;
 
 import domain.Group;
 import domain.Project;
-import domain.User;
 
 import java.sql.*;
 
@@ -15,41 +14,7 @@ public class Group_db {
     static final String USER = "root";
     static final String PASS = "2017211501";
     //static final String PASS = "zhw787374484";
-    //获取小组信息
-    public static Group getGroupFromDB(int group_id){
-        Group target_group=new Group();
-        Connection conn = null;
-        Statement stmt = null;
-        try {
-            // 注册 JDBC 驱动
-            Class.forName("com.mysql.jdbc.Driver");
-            // 打开链接
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            stmt = conn.createStatement();
-            String sql = "select * from MYBAND.group where group_id='"+group_id+"'";
-            ResultSet rs = stmt.executeQuery(sql);
-            int n=0;
-            // 展开结果集数据库
-            while (rs.next()) {
-                // 通过字段检索
-                target_group.setGroup_id(rs.getInt("group_id"));
-                target_group.setName(rs.getString("name"));
-                target_group.setIntroduction(rs.getString("introduction"));
-                n++;
-            }
-            // 完成后关闭
-            rs.close();
-            stmt.close();
-            conn.close();
-        } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (SQLException e) {//执行与数据库建立连接需要抛出SQL异常
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return target_group;
-    }
+
     //获取小组人数
     public static int getGroup_members_number(int group_id){
         Connection conn = null;
@@ -79,6 +44,42 @@ public class Group_db {
             e.printStackTrace();
         }
         return num;
+    }
+    //获取小组信息
+    public static Group getGroupFromDB(int group_id){
+        Group target_group=new Group();
+        Connection conn = null;
+        Statement stmt = null;
+        target_group.setNumber(getGroup_members_number(group_id));
+        try {
+            // 注册 JDBC 驱动
+            Class.forName("com.mysql.jdbc.Driver");
+            // 打开链接
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            stmt = conn.createStatement();
+            String sql = "select * from MYBAND.group where group_id='"+group_id+"'";
+            ResultSet rs = stmt.executeQuery(sql);
+            int n=0;
+            // 展开结果集数据库
+            while (rs.next()) {
+                // 通过字段检索
+                target_group.setGroup_id(rs.getInt("group_id"));
+                target_group.setName(rs.getString("name"));
+                target_group.setIntroduction(rs.getString("introduction"));
+                n++;
+            }
+            // 完成后关闭
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (SQLException e) {//执行与数据库建立连接需要抛出SQL异常
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return target_group;
     }
     //获取小组成员id
     public static int[] getGroup_members_id(int group_id){
