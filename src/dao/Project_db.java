@@ -38,7 +38,7 @@ public class Project_db {
                 target_project.setIntroduction(rs.getString("introduction"));
                 target_project.setImage_url(rs.getString("image_url"));
                 target_project.setMusic_url(rs.getString("music_url"));
-                target_project.setOpern_url(rs.getString("opern"));
+                target_project.setOpern_url(rs.getString("opern_url"));
                 target_project.setStatus(rs.getInt("status"));
                 n++;
             }
@@ -54,5 +54,9 @@ public class Project_db {
             e.printStackTrace();
         }
         return target_project;
+    }
+    //测试用主函数
+    public static void main(String[] args){
+        System.out.println(getProjectFromDB(1).toString());
     }
 }

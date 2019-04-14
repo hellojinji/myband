@@ -205,6 +205,29 @@ public class Group_db {
         }
         return projects;
     }
+    //增加组员
+    public static void addGroup_member(int group_id,int user_id){
+        String sql = "insert into MYBAND.group_members values(?,?)";//数据库操作语句（插入）
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            // 注册 JDBC 驱动
+            Class.forName("com.mysql.jdbc.Driver");
+
+            // 打开链接
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            PreparedStatement pst = conn.prepareStatement(sql);//用来执行SQL语句查询，对sql语句进行预编译处理
+            pst.setInt(1, user_id);
+            pst.setInt(2, group_id);
+            pst.executeUpdate();//解释在下
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (SQLException e) {//执行与数据库建立连接需要抛出SQL异常
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
     //没用（复制代码使用）
     public static ResultSet getResult(String sql){
         Connection conn = null;

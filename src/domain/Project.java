@@ -9,7 +9,7 @@ public class Project {
     private String music_url;
     private String image_url;
     private String opern_url;
-    private int status;
+    private int status;//1：招募；2：进行中；3：完成
 
     public Project(int project_id, int group_id, String name, String style, String introduction, String music_url, String image_url, String opern_url, int status) {
         this.project_id = project_id;
@@ -97,5 +97,20 @@ public class Project {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "project_id=" + project_id +
+                ", group_id=" + group_id +
+                ", name='" + name + '\'' +
+                ", style='" + style + '\'' +
+                ", introduction='" + introduction + '\'' +
+                ", music_url='" + music_url + '\'' +
+                ", image_url='" + image_url + '\'' +
+                ", opern_url='" + opern_url + '\'' +
+                ", status=" + status +
+                '}';
     }
 }

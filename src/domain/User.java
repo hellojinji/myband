@@ -5,7 +5,7 @@ public class User {
     private String name;
     private String nickname;
     private String password;
-    private int gender;
+    private int gender;//1:men,2:women;3:unclear
     private String email;
     private String address;
     private String signatrue;
